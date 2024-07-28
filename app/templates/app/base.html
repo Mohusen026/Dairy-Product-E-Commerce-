@@ -69,7 +69,11 @@
                 <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Order</a></li>
                 <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+                {% comment %} <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li> {% endcomment %}
+                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                  {% csrf_token %}
+              </form>
+              <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a></li>
                 </ul>
             </li>
             <li class="nav-item mx-2">
@@ -107,8 +111,6 @@
     <script script="{% static 'app/js/owl.carousel.min.js' %}"></script>
     <script script="{% static 'app/js/all.min.js' %}"></script>
     <script script="{% static 'app/js/myscript.js' %}"></script>
-
-
 
 
 

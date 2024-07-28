@@ -4,6 +4,9 @@ from . models import Customer, Product
 from django.db.models import Count
 from . forms import CustomerRegistrationForm,CustomerProfileForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required #chat
+
+
 
 
 
@@ -50,7 +53,7 @@ class CustomerRegistrationView(View):
         return render(request, 'app/customerregistration.html',locals())
     
 class ProfileView(View) :
-    def get(self, request):
+    def get(self,request):
         form=CustomerProfileForm()
         return render(request,'app/profile.html',locals())  
       
@@ -70,12 +73,25 @@ class ProfileView(View) :
             messages.success(request,"Congratulation Profile Save Successfully")
         else:
             messages.warning(request,"Invalid Input Data")
-
         return render(request,'app/profile.html',locals())
     
 def address(request):
     add = Customer.objects.filter(user=request.user) #only login user can see the data like thr root user
     return render(request,'app/address.html',locals())
+
+# @login_required #chat
+# def address(request):
+#     if request.method == "POST":
+#         form = AddressForm(request.POST)
+#         if form.is_valid():
+#             address = form.save(commit=False)
+#             address.user = request.user
+#             address.save()
+#             return redirect('profile')
+#     else:
+#         form = AddressForm()
+
+#     return render(request, 'app/address.html', {'form': form})
 
 
 class updateAddress(View):

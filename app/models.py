@@ -74,7 +74,7 @@ class Customer(models.Model):
     locality = models.CharField(max_length=200)
     city =models.CharField(max_length=50)
     mobile = models.IntegerField(default=0)
-    zipcode = models. IntegerField()
+    zipcode = models.IntegerField()
     state = models.CharField(choices=STATE_CHOICES, max_length=100) #these selection is optinal
     def __str__ (self) :
         return self.name
