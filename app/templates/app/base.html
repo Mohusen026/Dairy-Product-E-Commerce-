@@ -25,6 +25,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
@@ -69,7 +70,7 @@
                 <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Order</a></li>
                 <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
-                {% comment %} <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li> {% endcomment %}
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li> 
                 <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
                   {% csrf_token %}
               </form>
@@ -82,13 +83,14 @@
             <li class="nav-item mx-2">
                 <a href="#" class=nav-link text-white>Wishlist 4 </a>
             </li>
+            {% else %}
             <li class="nav-item mx-2">
                 <a href="{% url 'login' %}" class=nav-link text-white>Login</a>
             </li>
             <li class="nav-item mx-2">
                 <a href="{% url 'customerregistration' %}" class=nav-link text-white>Registration </a>
             </li>
-
+            {% endif %}
         </ul>
         </div>
       </nav>
@@ -108,11 +110,45 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"/></script>
 
-    <script script="{% static 'app/js/owl.carousel.min.js' %}"></script>
-    <script script="{% static 'app/js/all.min.js' %}"></script>
-    <script script="{% static 'app/js/myscript.js' %}"></script>
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>
+    <script src="{% static 'app/js/myscript.js' %}"></script>
 
 
 
 </body>
-</html>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
