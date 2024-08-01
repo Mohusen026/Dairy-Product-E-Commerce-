@@ -26,6 +26,7 @@
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 from django.urls import path
+from django.contrib import admin
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -48,6 +49,8 @@ urlpatterns = [
     path('checkout/', views.checkout.as_view(), name='checkout'),
     path('paymentdone/', views.payment_done,name='paymentdone'),
     path('orders/', views.orders, name='orders'),
+    path('search/',views.search, name='search'),
+    path('wishlist/',views.show_wishlist,name='showwishlist'),
 
 
     path('pluscart/', views.plus_cart),
@@ -76,3 +79,8 @@ urlpatterns = [
     path('password-reset-complete/', auth_view.PasswordResetCompleteView.as_view(template_name='app/password_reset_complete.html'), name='password_reset_complete'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+admin.site.site_header = "Mo_Husen Dairy"
+admin.site.site_title = "Mo_Husen Dairy"
+admin.site.index_title = "Welcome to Husen Dairy Shop"
